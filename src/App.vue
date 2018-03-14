@@ -9,7 +9,8 @@
 
 <script>
 import marked from'marked'
-
+import highlight from'highlight.js'
+import 'highlight.js/styles/monokai.css'
 export default {
   name: 'app',
   data () {
@@ -25,6 +26,7 @@ export default {
     }
   },
   mounted(){
+    highlight.initHighlightingOnLoad()
     this.output= marked(this.input)
   }
 }
@@ -48,20 +50,38 @@ textarea
 
 h1
   font-size: 22px
-  text-align: center
 
 h2,h3
   font-size: 18px
-  margin-bottom: 0px
+  margin-top: 25px 
+  margin-bottom: 5px 
 
 p
   margin: 0
 
 table
-  width: 100%
-  marign-top: 5px
+
+  display: table
+  width: calc(100% - 10px)
+  marign: 10px 0
   background-color: #EEE
   // margin: 0 auto
+
+pre>code
+  font-family: courier, monospace
+  // font-weight: 100
+
+pre
+  padding: 15px
+  background-color: #333
+  color: #EEE
+  margin-right: 10px
+
+p>code
+  font-family: courier, monospace
+  padding: 5px
+  background-color: #EEE
+  color: #333
 
 td
   text-align: center
@@ -86,6 +106,7 @@ ul
   overflow-y: scroll 
 
 .previewArea
+  font-weight: 100
   padding-left: 10px
   width: 50%
   max-height: 100%
