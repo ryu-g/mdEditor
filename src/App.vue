@@ -30,6 +30,12 @@ export default {
     this.output= marked(this.input)
   }
 }
+
+marked.setOptions({
+    highlight: function(code, lang) {
+        return highlight.highlightAuto(code, [lang]).value
+    }
+})
 </script>
 
 
@@ -40,7 +46,7 @@ html, body
 
 textarea 
   font-family: courier, monospace
-  font-size: 16px
+  font-size: 12px
   background-color: #56040c
   width: 100%
   height: 100%
@@ -49,18 +55,19 @@ textarea
   padding: 9px
 
 h1
-  font-size: 22px
+  font-size: 18px
 
 h2,h3
-  font-size: 18px
-  margin-top: 25px 
+  font-size: 16px
+  margin-top: 20px 
   margin-bottom: 5px 
 
-p
+p,li,td,tr
+  font-size: 14px
+
   margin: 0
 
 table
-
   display: table
   width: calc(100% - 10px)
   marign: 10px 0
@@ -109,13 +116,19 @@ ul
   font-weight: 100
   padding-left: 10px
   width: 50%
-  max-height: 100%
+  min-height: 100%
   color: #2c3e50
   overflow-y: scroll 
 
 .center
   text-align: center
 
+@media print
+  .textArea
+    display: none
 
+  .previewArea
+    width: 100% 
+    overflow-y: visible
 
 </style>
